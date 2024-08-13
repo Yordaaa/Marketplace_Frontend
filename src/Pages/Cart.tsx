@@ -47,7 +47,9 @@ export default function Cart() {
   };
 
   const handleRemoveItem = (id: number) => {
-    setProducts((prevProducts) => prevProducts.filter((product) => product.id !== id));
+    setProducts((prevProducts) =>
+      prevProducts.filter((product) => product.id !== id)
+    );
   };
 
   return (
@@ -73,8 +75,8 @@ export default function Cart() {
                     </h3>
                   </div>
                   <h3>
-                      <a href="">{product.description}</a>
-                    </h3>
+                    <a href="">{product.description}</a>
+                  </h3>
                   <p className="mt-1 text-sm text-gray-500">{product.weight}</p>
                 </div>
                 <div className="flex flex-1 items-end justify-between text-sm">
@@ -114,7 +116,8 @@ export default function Cart() {
 
       <div className="px-4 py-6 sm:px-6">
         <div className="mt-6">
-          <Link to=""
+          <Link
+            to="/submit"
             className="flex items-center justify-center rounded-md border border-transparent bg-purple-950 px-6 py-2 text-base font-medium text-white shadow-sm hover:bg-opacity-70"
           >
             Proceed to next
@@ -123,7 +126,10 @@ export default function Cart() {
         <div className="mt-6 flex justify-center text-center text-sm text-gray-500">
           <p>
             or{" "}
-            <Link to="/marketplace" className="font-medium text-purple-600 hover:opacity-70">
+            <Link
+              to="/marketplace"
+              className="font-medium text-purple-600 hover:opacity-70"
+            >
               Continue Shopping
               <span aria-hidden="true"> &rarr;</span>
             </Link>
