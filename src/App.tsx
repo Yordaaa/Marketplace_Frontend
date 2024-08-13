@@ -1,7 +1,12 @@
+import AppRoutes from "./AppRoutes";
+import Header from "./Components/Header";
+
 export default function App() {
   return (
-    <h1 className="text-3xl font-bold underline">
-      Hello world!
-    </h1>
-  )
+    <>
+    <Header />
+      
+      <AppRoutes />
+    </>
+  );
 }
