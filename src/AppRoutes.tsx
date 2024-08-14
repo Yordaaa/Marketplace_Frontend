@@ -7,7 +7,7 @@ import Submit from "./Pages/Submit";
 function AppRoutes() {
   return (
     <Routes>
-      <Route path="marketplace" element={<Marketplace />} />
+      <Route path="/" element={<Marketplace />} />
       <Route path="cart" element={<Cart />} />
       <Route path="detail" element={<Detail />} />
       <Route path="submit" element={<Submit />} />
