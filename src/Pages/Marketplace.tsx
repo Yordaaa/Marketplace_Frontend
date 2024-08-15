@@ -42,14 +42,23 @@ function Marketplace() {
                 <div className="px-5">
                     <Search />
                 </div>
-                <div className="grid grid-cols-3 lg:grid-cols-5 gap-5 max-w-screen-lg mx-auto text-white px-5">
-                    {categories?.map((category) => (
-                        <Link to="" className="flex gap-2 items-center">
-                            <i className="fas fa-building text-4xl"></i>
-                            <h3 className="text-lg">{category.category}</h3>
-                        </Link>
-                    ))}
+                <div className="flex gap-4 items-center max-w-screen-lg  mx-auto">
+                    <div className="grid grid-cols-3 lg:grid-cols-5 gap-5  text-white px-5">
+                        {categories?.slice(0, 5).map((category) => (
+                            <Link to="" className="flex gap-2 items-center" key={category._id}>
+                                <i className="fas fa-building text-3xl md:text-4xl"></i>
+                                <h3 className="text-md md:text-lg">{category.category}</h3>
+                            </Link>
+                        ))}
+                    </div>
+
+                    <Link to="/categories" className="hidden md:block w-fit text-gray-50 px-4 py-2 rounded">
+                        Show_More
+                    </Link>
                 </div>
+                <Link to="/categories" className="block md:hidden w-fit text-gray-50 px-4 py-2 rounded">
+                        Show_More
+                    </Link>
             </div>
             <div>
                 <div className="mx-auto max-w-2xl px-4 sm:px-6 lg:max-w-7xl lg:px-8 pt-5">

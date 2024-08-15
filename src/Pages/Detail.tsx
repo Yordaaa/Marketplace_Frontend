@@ -14,7 +14,7 @@ export default function Detail() {
         return <div>Error: {errorMessage}</div>;
     }
     return (
-        <div className="mt-24 max-w-screen-lg mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="mt-24 max-w-screen-lg mx-auto px-4 sm:px-6 lg:px-8 h-[70vh]">
             <div className="grid grid-cols-3 ">
                 <div className="col-span-1">
                     <img src={product?.productImg} alt="BATH MAT" className="w-full h-auto rounded-md shadow-md" />
