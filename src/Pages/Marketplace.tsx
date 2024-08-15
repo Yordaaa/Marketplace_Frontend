@@ -1,5 +1,4 @@
 import { Link } from 'react-router-dom';
-import Search from '../Components/Search';
 import { useGetAllCategoriesQuery, useGetAllProductsQuery } from '../Redux/Features/productAPiSlice';
 import { ProductCard } from './ProductCard';
 import { productResTyp } from '../Redux/Features/types';
@@ -29,9 +28,9 @@ function Marketplace() {
     console.log(products);
 
     return (
-        <div className="mt-12">
+        <div className="pt-8">
             <div
-                className="py-10"
+                className="py-16"
                 style={{
                     backgroundImage: 'url("https://www.constructionline.co.uk/wp-content/uploads/2022/06/093-CL-MARKETPLACE-HEADER-V3.1-1.png")',
                     backgroundSize: 'cover',
@@ -39,11 +38,12 @@ function Marketplace() {
                     backgroundBlendMode: 'darken'
                 }}
             >
-                {/* <div className="px-5 my-10">
-                    <Search />
-                </div> */}
-                <div className="flex gap-4 items-center max-w-screen-lg  mx-auto">
-                    <div className="grid grid-cols-3 lg:grid-cols-5 gap-8  text-white px-5">
+                <h1 className="text-gray-50 text-4xl md:text-5xl lg:text-7xl text-center use pt-5">WELCOME TO MAVEKO </h1>
+                <h1 className="text-gray-50 text-xl md:text-2xl lg:text-4xl text-center use pb-5">WHAT ARE YOU LOOKING FOR? </h1>
+            </div>
+            <div className=" max-w-screen-2xl mx-auto px-3 lg:px-10 py-5 bg-white shadow-md">
+                <div className="flex  items-center">
+                    <div className="hidden md:grid grid-cols-3 lg:grid-cols-5 gap-8  text-gray-800 px-5">
                         {categories?.slice(0, 5).map((category) => (
                             <Link to="" className="flex gap-2 items-center" key={category._id}>
                                 <i className="fas fa-building text-3xl md:text-4xl"></i>
@@ -51,13 +51,21 @@ function Marketplace() {
                             </Link>
                         ))}
                     </div>
-
-                    <Link to="/categories" className="hidden md:block w-fit text-gray-50 px-4 py-2 rounded">
+                    <div className="grid md:hidden grid-cols-2 lg:grid-cols-4 gap-8  text-gray-800 px-5">
+                        {categories?.slice(0, 4).map((category) => (
+                            <Link to="" className="flex gap-2 items-center" key={category._id}>
+                                <i className="fas fa-building text-3xl md:text-4xl"></i>
+                                <h3 className="text-md md:text-lg">{category.category}</h3>
+                            </Link>
+                        ))}
+                    </div>
+                    <Link to="/categories" className=" pr-2 py-2 hidden text-black bg-gray-100 px-5 rounded-md md:flex mx-auto ">
                         Show_More
                     </Link>
                 </div>
-                <Link to="/categories" className="block md:hidden w-fit text-gray-50 px-4 py-2 rounded">
-                    Show_More
+
+                <Link to="/categories" className=" pl-4 pr-2 py-2  md:hidden text-black bg-gray-100 px-5 w-fit rounded-md flex mx-auto mt-3">
+                    Show More
                 </Link>
             </div>
             <div>

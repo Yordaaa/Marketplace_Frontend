@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Dialog, DialogPanel } from '@headlessui/react';
-import { Link, useLocation } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { cartSelector } from '../Redux/Features/seletor';
 import Search from './Search';
@@ -13,7 +13,7 @@ const navigation = [
 
 function Header() {
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-    const location = useLocation();
+
     const cart = useSelector(cartSelector);
     const handleLinkClick = () => {
         setMobileMenuOpen(false);
@@ -28,7 +28,7 @@ function Header() {
                     </label>
                     <label className="hidden md:block">
                         <i className="fa fa-envelope text-purple-700 pr-2 "></i>
-                        contact@xpresspro.com
+                        contact@Maveko.com
                     </label>
                     <label className="hidden md:block">
                         <i className="fa fa-clock text-purple-700 pr-2"></i>Mon - Fri 8:00 - 18:00
@@ -63,14 +63,14 @@ function Header() {
                 <nav className="flex items-center justify-between p-2 lg:px-8 max-w-screen-2xl mx-auto">
                     <div className="flex lg:flex-1">
                         <Link to="/" className="text-2xl font-bold -m-1.5 p-1.5">
-                            Market
+                            Maveko
                         </Link>
                     </div>
 
                     <i className="fas fa-cart-shopping"></i>
                     <div className="flex lg:hidden">
                         <div className="flex  justify-end gap-2 pr-3">
-                            <div className='flex gap-3'>
+                            <div className="flex gap-3">
                                 <div className="w-full ">
                                     <Search />
                                 </div>
@@ -116,7 +116,7 @@ function Header() {
                     <DialogPanel className="fixed inset-y-0 right-0 z-50 w-full overflow-y-auto bg-white px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10">
                         <div className="flex items-center justify-between">
                             <Link to="/" className="text-xl font-bold -m-1.5 p-1.5">
-                                Market
+                                Maveko
                             </Link>
                             <div className="flex flex-1 justify-end gap-2 pr-3">
                                 <div>
