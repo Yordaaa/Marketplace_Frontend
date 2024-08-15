@@ -25,6 +25,7 @@ export interface productResTyp {
     weight: number;
     weight_unit_id: string;
     _id: string;
+    quantity?: number;
 }
 
 export interface ProductCardProps {
@@ -33,4 +34,8 @@ export interface ProductCardProps {
 
 export interface productIdProps {
     id: string;
+}
+
+export interface CartItem extends productResTyp {
+    quantity: number;
 }

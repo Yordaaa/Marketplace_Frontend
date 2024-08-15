@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import { Dialog, DialogPanel } from '@headlessui/react';
 import { Link, useLocation } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import { cartSelector } from '../Redux/Features/seletor';
 
 const navigation = [
     { name: 'Marketplace', to: '/' },
@@ -11,7 +13,7 @@ const navigation = [
 function Header() {
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
     const location = useLocation();
-
+    const cart = useSelector(cartSelector);
     const handleLinkClick = () => {
         setMobileMenuOpen(false);
     };
@@ -35,7 +37,7 @@ function Header() {
                         <div>
                             <Link to="/cart" className="flex justify-center items-center">
                                 <i className="fas fa-shopping-cart text-2xl  relative"></i>
-                                <p className="text-white bg-red-600 absolute text-[12px]  rounded-full w-4 h-4 text-center ml-5 mb-5">4</p>
+                                <p className="text-white bg-red-600 absolute text-[12px]  rounded-full w-4 h-4 text-center ml-5 mb-5">{cart.length}</p>
                             </Link>
                         </div>
                     </div>
@@ -54,7 +56,7 @@ function Header() {
                     <div className="flex">
                         <Link to="/cart" className="flex justify-center items-center">
                             <i className="fas fa-shopping-cart text-2xl  relative"></i>
-                            <p className="text-white bg-red-600 absolute text-[12px]  rounded-full w-4 h-4 text-center ml-5 mb-5">4</p>
+                            <p className="text-white bg-red-600 absolute text-[12px]  rounded-full w-4 h-4 text-center ml-5 mb-5">{cart.length}</p>
                         </Link>
                         <p className="pt-2 text-lg">cart</p>
                     </div>
@@ -71,7 +73,7 @@ function Header() {
                             <div>
                                 <Link to="/cart" className="flex justify-center items-center">
                                     <i className="fas fa-shopping-cart text-2xl  relative"></i>
-                                    <p className="text-white bg-red-600 absolute text-[12px]  rounded-full w-4 h-4 text-center ml-5 mb-5">4</p>
+                                    <p className="text-white bg-red-600 absolute text-[12px]  rounded-full w-4 h-4 text-center ml-5 mb-5">{cart.length}</p>
                                 </Link>
                             </div>
                         </div>
