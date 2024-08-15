@@ -2,17 +2,24 @@ import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { cartSelector } from '../Redux/Features/seletor';
 import { useDispatch } from 'react-redux';
+import { assignNewQuantity, decreaseQuantity, incrementQuantity, removeFromCart } from '../Redux/Features/cartSlice';
 
 export default function Cart() {
     const cart = useSelector(cartSelector);
     const dispatch = useDispatch();
 
-    const handleQuantityChange = (id: string, newQuantity: number) => {
-        //  dispatch();
-    };
+    const handleQuantityChange = ({ id, newQuantity }: { id: string; newQuantity: number }) => dispatch(assignNewQuantity({ id, newQuantity }));
 
     const handleRemoveItem = (id: string) => {
-        // dispatch(removeFromCart(id));
+        dispatch(removeFromCart({ _id: id }));
+    };
+
+    const handleDecrement = (id: string) => {
+        dispatch(decreaseQuantity({ _id: id }));
+    };
+
+    const handleIncrement = (id: string) => {
+        dispatch(incrementQuantity({ _id: id }));
     };
 
     return (
@@ -39,18 +46,40 @@ export default function Cart() {
                                     <p className="mt-1 text-sm text-gray-500">{cart.weight}</p>
                                 </div>
                                 <div className="flex flex-1 items-end justify-between text-sm">
-                                    <div className="flex items-center">
-                                        <label htmlFor={`quantity-${cart._id}`} className="mr-2">
-                                            Qty:
-                                        </label>
-                                        <input
-                                            type="number"
-                                            id={`quantity-${cart._id}`}
-                                            value={cart.quantity}
-                                            min="1"
-                                            className="w-16 border border-gray-300 rounded-md text-center"
-                                            onChange={(e) => handleQuantityChange(cart._id, Math.max(1, parseInt(e.target.value)))}
-                                        />
+                                    <div>
+                                        <div className="flex items-center max-w-[11rem]">
+                                            <button
+                                                type="button"
+                                                id="decrement-button"
+                                                className="bg-gray-100  hover:bg-gray-200 border border-gray-300 rounded-s-lg p-3 h-11"
+                                                onClick={() => handleDecrement(cart._id)}
+                                            >
+                                                <i className="fas fa-minus"></i>
+                                            </button>
+                                            <input
+                                                type="text"
+                                                id="bedrooms-input"
+                                                data-input-counter
+                                                data-input-counter-min="1"
+                                                data-input-counter-max="5"
+                                                aria-describedby="helper-text-explanation"
+                                                className="bg-gray-50 border-x-0 border-gray-300 h-11 font-medium text-center text-gray-900 block w-full "
+                                                placeholder=""
+                                                value={cart.quantity}
+                                                onChange={(e) => handleQuantityChange({ id: cart._id, newQuantity: parseInt(e.target.value) })}
+                                                required
+                                            />
+                                            <button
+                                                type="button"
+                                                id="increment-button"
+                                                className="bg-gray-100 d hover:bg-gray-200 border border-gray-300 rounded-e-lg p-3 h-11 "
+                                                onClick={() => {
+                                                    handleIncrement(cart._id);
+                                                }}
+                                            >
+                                                <i className="fas fa-plus"></i>
+                                            </button>
+                                        </div>
                                     </div>
                                     <div className="flex">
                                         <button type="button" onClick={() => handleRemoveItem(cart._id)} className="font-medium text-purple-600 hover:text-purple-500">
