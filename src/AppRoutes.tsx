@@ -8,17 +8,17 @@ import Dashboard from './Pages/Dashboard/Dashboard';
 import Requests from './Pages/Dashboard/Requests';
 
 function AppRoutes() {
-    return (
-        <Routes>
-            <Route path="/" element={<Marketplace />} />
-            <Route path="cart" element={<Cart />} />
-            <Route path="detail" element={<Detail />} />
-            <Route path="submit" element={<Submit />} />
-            <Route path="sidenav" element={<SideNav />} />
+      return (
+            <Routes>
+                  <Route path="/" element={<Marketplace />} />
+                  <Route path="cart" element={<Cart />} />
+                  <Route path="product/:id" element={<Detail />} />
+                  <Route path="submit" element={<Submit />} />
+                <Route path="sidenav" element={<SideNav />} />
             <Route path="dashboard" element={<Dashboard />} />
             <Route path="requests" element={<Requests />} />
         </Routes>
-    );
+      );
 }
 
 export default AppRoutes;
