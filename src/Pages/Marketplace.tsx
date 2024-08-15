@@ -39,11 +39,11 @@ function Marketplace() {
                     backgroundBlendMode: 'darken'
                 }}
             >
-                <div className="px-5">
+                {/* <div className="px-5 my-10">
                     <Search />
-                </div>
+                </div> */}
                 <div className="flex gap-4 items-center max-w-screen-lg  mx-auto">
-                    <div className="grid grid-cols-3 lg:grid-cols-5 gap-5  text-white px-5">
+                    <div className="grid grid-cols-3 lg:grid-cols-5 gap-8  text-white px-5">
                         {categories?.slice(0, 5).map((category) => (
                             <Link to="" className="flex gap-2 items-center" key={category._id}>
                                 <i className="fas fa-building text-3xl md:text-4xl"></i>
@@ -57,8 +57,8 @@ function Marketplace() {
                     </Link>
                 </div>
                 <Link to="/categories" className="block md:hidden w-fit text-gray-50 px-4 py-2 rounded">
-                        Show_More
-                    </Link>
+                    Show_More
+                </Link>
             </div>
             <div>
                 <div className="mx-auto max-w-2xl px-4 sm:px-6 lg:max-w-7xl lg:px-8 pt-5">

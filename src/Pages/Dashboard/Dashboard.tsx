@@ -6,7 +6,7 @@ function Dashboard() {
             <div>
                 <SideNav />
             </div>
-            <div className="pt-16 p-5 w-full use">
+            <div className="pt-12 p-5 w-full use">
                 <h1 className="text-3xl font-bold ">Dashboard Overview</h1>
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-5 w-full bg-white mt-4">
                     <div className="flex items-center border shadow-sm rounded p-2 gap-5">

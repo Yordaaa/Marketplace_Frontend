@@ -14,7 +14,6 @@ function AppRoutes() {
             <Route path="cart" element={<Cart />} />
             <Route path="product/:id" element={<Detail />} />
             <Route path="submit" element={<Submit />} />
-
             <Route path="dashboard" element={<Dashboard />} />
             <Route path="requests" element={<Requests />} />
             <Route path="categories" element={<Categories />} />

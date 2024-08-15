@@ -2,7 +2,7 @@
 
 function Search() {
   return (
-    <div className="relative w-full max-w-screen-md mx-auto my-10">
+    <div className="relative w-full max-w-screen-md mx-auto ">
     <div className="absolute inset-y-0 start-0 flex items-center ps-3 ">
       <i className="fas fa-search"></i>
     </div>
