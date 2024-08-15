@@ -1,3 +1,4 @@
+
 export default function Detail() {
   return (
     <div className="mt-24 max-w-screen-lg mx-auto px-4 sm:px-6 lg:px-8">
@@ -33,6 +34,7 @@ export default function Detail() {
           </button>
         </div>
       </div>
+
     </div>
   );
 }

@@ -82,6 +82,7 @@ function ProductCard({ product }) {
                 </Link>
             </div>
         </Link>
+        
     );
 }
 
