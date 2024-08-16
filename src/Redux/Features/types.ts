@@ -37,5 +37,6 @@ export interface productIdProps {
 }
 
 export interface CartItem extends productResTyp {
+    price: string | number | readonly string[] | undefined;
     quantity: number;
 }

@@ -82,7 +82,7 @@ export default function Cart() {
                                         </div>
                                     </div>
                                     <div className="flex">
-                                        <button type="button" onClick={() => handleRemoveItem(cart._id)} className="font-medium text-purple-600 hover:text-purple-500">
+                                        <button type="button" onClick={() => handleRemoveItem(cart._id)} className="font-medium bg-red-600 p-2 text-white hover:opacity-70">
                                             Remove
                                         </button>
                                     </div>

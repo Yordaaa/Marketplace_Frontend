@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 
 function Footer() {
   return (
-    <div className="">
+    <div className=" pt-5">
       <div className="relative isolate overflow-hidden bg-gray-900 pb-5  mx-auto">
         <img
           src="https://www.stubbsparkin.co.uk/wp-content/uploads/2021/01/footer-background.png"

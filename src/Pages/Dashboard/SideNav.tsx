@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 function SideNav() {
     return (
-        <div className=" mt-14 left-0 w-52 h-[90vh] z-50 bg-gray-800 text-white shadow-lg use">
+        <div className=" mt-8 left-0 w-52 min-h-[70vh] h-full z-50 bg-gray-800 text-white shadow-lg use">
             <div className="flex items-center justify-center h-16">
                 <h2 className="text-lg font-semibold">Admin Dashboard</h2>
             </div>
