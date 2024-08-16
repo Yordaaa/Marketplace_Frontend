@@ -1,5 +1,4 @@
 import { Link } from 'react-router-dom';
-import Search from '../Components/Search';
 import { useGetAllCategoriesQuery, useGetAllProductsQuery } from '../Redux/Features/productAPiSlice';
 import { ProductCard } from './ProductCard';
 import { productResTyp } from '../Redux/Features/types';
