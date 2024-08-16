@@ -19,7 +19,7 @@ function Cancel() {
                         <label htmlFor="email" className="block mb-2 font-medium text-gray-900">
                             Message
                         </label>
-                        <textarea className="w-full bg-gray-200 border border-gray-200 rounded" rows="5" name="message"></textarea>
+                        <textarea className="w-full bg-gray-200 border border-gray-200 rounded" rows={5} name="message"></textarea>
                     </div>
                     <button type="submit" className="bg-purple-950 hover:bg-opacity-90 p-1 px-5 text-white rounded">
                         Send
