@@ -6,8 +6,8 @@ import { cartSelector } from '../Redux/Features/seletor';
 import Search from './Search';
 
 const navigation = [
-    { name: 'Marketplace', to: '/' }
-    // { name: 'About Us', to: '/aboutus' },
+    { name: 'Marketplace', to: '/' },
+    { name: 'My Order', to: '/myorder' }
     // { name: 'Contact Us', to: '/contactus' }
 ];
 
@@ -69,11 +69,11 @@ function Header() {
 
                     <i className="fas fa-cart-shopping"></i>
                     <div className="flex lg:hidden">
+                        <div className="w-full ">
+                            <Search />
+                        </div>
                         <div className="flex  justify-end gap-2 pr-3">
                             <div className="flex gap-3">
-                                <div className="w-full ">
-                                    <Search />
-                                </div>
                                 <Link to="/cart" className="flex justify-center items-center">
                                     <i className="fas fa-shopping-cart text-2xl  relative"></i>
                                     <p className="text-white bg-red-600 absolute text-[12px]  rounded-full w-4 h-4 text-center ml-5 mb-5">{cart.length}</p>
@@ -84,19 +84,13 @@ function Header() {
                             <i className="fas fa-bars text-xl"></i>
                         </button>
                     </div>
-                    {/* <div className="hidden lg:flex lg:gap-x-12">
-                        {navigation.map((item) => (
-                            <Link key={item.name} to={item.to} className={`text-md font-semibold leading-6 text-gray-900 ${location.pathname === item.to ? 'bg-gray-700 text-white' : ''} p-2 rounded`}>
-                                {item.name}
-                            </Link>
-                        ))}
-                    </div> */}
+
                     <div className="hidden lg:flex w-full max-w-screen-md">
                         <Search />
                     </div>
                     <div className="hidden lg:flex lg:flex-1 lg:justify-end gap-2">
                         <div className="flex">
-                            <div className="hidden lg:flex lg:gap-x-12">
+                            <div className="hidden lg:flex">
                                 {navigation.map((item) => (
                                     <Link key={item.name} to={item.to} className="flex items-center pr-5 text-md font-semibold leading-6 text-gray-900">
                                         {item.name}
