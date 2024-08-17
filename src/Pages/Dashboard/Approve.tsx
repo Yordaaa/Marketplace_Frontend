@@ -29,7 +29,6 @@ function Approve() {
         }));
     };
 
-    // Calculate grand total
     const grandTotal = Object.values(totals).reduce((acc, curr) => acc + curr, 0);
 
     return (
