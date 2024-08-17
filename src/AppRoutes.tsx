@@ -8,6 +8,7 @@ import Requests from './Pages/Dashboard/Requests';
 import Categories from './Pages/Categories';
 import Approve from './Pages/Dashboard/Approve';
 import Cancel from './Pages/Dashboard/Cancel';
+import Otp from './Pages/Otp';
 
 function AppRoutes() {
     return (
@@ -21,6 +22,7 @@ function AppRoutes() {
             <Route path="categories" element={<Categories />} />
             <Route path="requests/approve" element={<Approve />} />
             <Route path="requests/cancel" element={<Cancel />} />
+            <Route path="otp" element={<Otp />} />
         </Routes>
     );
 }

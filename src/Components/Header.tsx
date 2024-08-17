@@ -69,11 +69,11 @@ function Header() {
 
                     <i className="fas fa-cart-shopping"></i>
                     <div className="flex lg:hidden">
+                        <div className="w-full ">
+                            <Search />
+                        </div>
                         <div className="flex  justify-end gap-2 pr-3">
                             <div className="flex gap-3">
-                                <div className="w-full ">
-                                    <Search />
-                                </div>
                                 <Link to="/cart" className="flex justify-center items-center">
                                     <i className="fas fa-shopping-cart text-2xl  relative"></i>
                                     <p className="text-white bg-red-600 absolute text-[12px]  rounded-full w-4 h-4 text-center ml-5 mb-5">{cart.length}</p>
