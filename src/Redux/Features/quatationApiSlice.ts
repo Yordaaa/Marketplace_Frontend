@@ -1,3 +1,4 @@
+import { quatationResType, QuotationByIdProps } from '../../Pages/types';
 import { apiSlice } from './apiSlice';
 
 export const quatationApiSlice = apiSlice.injectEndpoints({
@@ -11,12 +12,27 @@ export const quatationApiSlice = apiSlice.injectEndpoints({
                 };
             }
         }),
-        getQuotes: builder.query({
+        getQuotes: builder.query<quatationResType, void>({
             query: () => ({
-                url: 'https://api.example.com/quotes'
+                url: '/quatation/get-all-quatation'
             })
+        }),
+        getQuotesById: builder.query<QuotationByIdProps, string>({
+            query: (id: string) => ({
+                url: `/quatation/get-quatationById/${id}`
+            })
+        }),
+        respondeCustmerQuote: builder.mutation({
+            query: (data) => {
+                console.log(data);
+                return {
+                    url: '/quatation/respond-customer-quote',
+                    method: 'POST',
+                    body: data
+                };
+            }
         })
     })
 });
 
-export const { useRequestQuatationMutation, useGetQuotesQuery } = quatationApiSlice;
+export const { useRequestQuatationMutation, useGetQuotesQuery, useGetQuotesByIdQuery, useRespondeCustmerQuoteMutation } = quatationApiSlice;

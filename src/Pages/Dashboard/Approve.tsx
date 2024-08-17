@@ -1,23 +1,29 @@
 import SideNav from './SideNav';
-import { useSelector } from 'react-redux';
-import { cartSelector } from '../../Redux/Features/seletor';
-import { useDispatch } from 'react-redux';
-import { assignNewQuantity } from '../../Redux/Features/cartSlice';
-import { useState } from 'react';
+import { FormEvent, useState } from 'react';
+import { useLocation } from 'react-router-dom';
+import { useGetQuotesByIdQuery, useRespondeCustmerQuoteMutation } from '../../Redux/Features/quatationApiSlice';
 
 function Approve() {
-    const cart = useSelector(cartSelector);
-    const dispatch = useDispatch();
+    const [message, setMessage] = useState('');
+
+    const location = useLocation();
+    const { id } = location.state || {};
+
+    const { data } = useGetQuotesByIdQuery(id);
+    const [respondeCustmerQuote, { isLoading }] = useRespondeCustmerQuoteMutation();
+
     const [totals, setTotals] = useState<{ [key: string]: number }>({});
+    const [prices, setPrices] = useState<{ [key: string]: number }>({});
 
-    const handleQuantityChange = ({ id, newQuantity }: { id: string; newQuantity: number }) => {
-        dispatch(assignNewQuantity({ id, newQuantity }));
-        const currentPrice = cart.find((item) => item._id === id)?.price || 0;
-        calculateTotal(id, newQuantity, currentPrice);
-    };
+    const handlePriceChange = ({ id, price, qouteId }: { id: string; price: number; qouteId: string }) => {
+        const product = data?.quotation.products.find((i) => i.productDetails._id === id);
+        const quantity = product ? product.quantity_requested : 0;
 
-    const handlePriceChange = ({ id, price }: { id: string; price: number }) => {
-        const quantity = cart.find((item) => item._id === id)?.quantity || 0;
+        setPrices((prevPrices) => ({
+            ...prevPrices,
+            [qouteId]: price
+        }));
+
         calculateTotal(id, quantity, price);
     };
 
@@ -29,8 +35,20 @@ function Approve() {
         }));
     };
 
-    // Calculate grand total
     const grandTotal = Object.values(totals).reduce((acc, curr) => acc + curr, 0);
+
+    const handleSubmit = (e: FormEvent) => {
+        e.preventDefault();
+        console.log(id, message, prices, grandTotal);
+        respondeCustmerQuote({
+            data: {
+                id,
+                message,
+                prices,
+                grandTotal
+            }
+        });
+    };
 
     return (
         <div className="flex">
@@ -43,23 +61,23 @@ function Approve() {
                 <div className="p-5">
                     <ul role="list" className="divide-y">
                         <h1>Selected Items</h1>
-                        {cart.map((cartItem) => (
-                            <li key={cartItem._id} className="flex py-6">
+                        {data?.quotation.products.map((p) => (
+                            <li key={p.productDetails._id} className="flex py-6">
                                 <div className="h-24 rounded-md border p-1 border-gray-200">
-                                    <img src={cartItem.productImg} alt={cartItem.name} className="h-full w-full object-cover object-center" />
+                                    <img src={p.productDetails.productImg} alt={p.productDetails.name} className="h-full w-full object-cover object-center" />
                                 </div>
 
                                 <div className="ml-4 flex flex-1 flex-col">
                                     <div>
                                         <div className="flex justify-between font-medium text-gray-900">
                                             <h3>
-                                                <a href="">{cartItem.name}</a>
+                                                <a href="">{p.productDetails.name}</a>
                                             </h3>
                                         </div>
                                         <h3>
-                                            <a href="">{cartItem.description}</a>
+                                            <a href="">{p.productDetails.description}</a>
                                         </h3>
-                                        <p className="mt-1 text-sm text-gray-500">{cartItem.weight}</p>
+                                        <p className="mt-1 text-sm text-gray-500">{p.productDetails.weight.toString()}</p>
                                     </div>
                                     <div className="flex flex-1 items-end justify-between text-sm">
                                         <div>
@@ -71,10 +89,7 @@ function Approve() {
                                                     data-input-counter-max="5"
                                                     aria-describedby="helper-text-explanation"
                                                     className="bg-gray-50 border-x-0 border-gray-300 h-11 font-medium text-center text-gray-900 block w-full"
-                                                    placeholder=""
-                                                    value={cartItem.quantity}
-                                                    onChange={(e) => handleQuantityChange({ id: cartItem._id, newQuantity: parseInt(e.target.value) })}
-                                                    required
+                                                    value={p.quantity_requested}
                                                 />
                                             </div>
                                         </div>
@@ -82,14 +97,14 @@ function Approve() {
                                             <span className="px-3">x </span>
                                             <input
                                                 type="number"
-                                                data-id={cartItem._id}
+                                                data-id={p.productDetails._id}
                                                 className="bg-gray-50 border-gray-300 h-11 font-medium text-center text-gray-900 block w-32 border rounded-md"
                                                 placeholder=""
-                                                defaultValue={cartItem.price}
-                                                onChange={(e) => handlePriceChange({ id: cartItem._id, price: parseFloat(e.target.value) })}
+                                                defaultValue={p.productDetails.price}
+                                                onChange={(e) => handlePriceChange({ id: p.productDetails._id, price: parseFloat(e.target.value), qouteId: p._id })}
                                             />
                                             <span className="px-3">=</span>
-                                            <span>${totals[cartItem._id]?.toFixed(2) || '0.00'}</span>
+                                            <span>${totals[p.productDetails._id]?.toFixed(2) || '0.00'}</span>
                                         </div>
                                     </div>
                                 </div>
@@ -100,20 +115,19 @@ function Approve() {
                 <div className="px-5 mt-4 pb-4 flex justify-end">
                     <h2 className="font-medium text-gray-900">Total Price: ${grandTotal.toFixed(2)}</h2>
                 </div>
-                <form className="px-5">
-                    <div>
-                        <label className="block mb-2 font-medium text-gray-700">Email</label>
-                        <input type="email" className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg block w-full p-2.5" name="email" required />
-                    </div>
-
+                <div className=" mx-5">
+                    <h2 className="block mb-2 font-medium text-gray-700">Email</h2>
+                    <div className="bg-gray-50  text-gray-900 sm:text-sm rounded-lg block w-full p-2.5">{data?.quotation.customer_email}</div>
+                </div>
+                <form className="px-5" onSubmit={handleSubmit}>
                     <div className="pt-5">
                         <label htmlFor="message" className="block mb-2 font-medium text-gray-900">
                             Message
                         </label>
-                        <textarea className="w-full bg-gray-200 border border-gray-200 rounded" rows={5} name="message"></textarea>
+                        <textarea value={message} onChange={(e) => setMessage(e.target.value)} className="w-full bg-gray-200 border border-gray-200 rounded" rows={5} name="message"></textarea>
                     </div>
-                    <button type="submit" className="bg-purple-950 hover:bg-opacity-90 p-1 px-5 text-white rounded">
-                        Send
+                    <button disabled={isLoading} type="submit" className="bg-purple-950 hover:bg-opacity-90 p-1 px-5 text-white rounded">
+                        {isLoading ? 'Sending' : 'Send'}
                     </button>
                 </form>
             </div>

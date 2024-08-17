@@ -24,17 +24,16 @@ export function ProductCard({ product }: ProductCardProps) {
                     )}
                 </div>
                 <div className="mt-4 flex justify-between px-2">
-                    <div className='overflow-hidden'>
+                    <div className="overflow-hidden">
                         <h3 className="font-semibold text-gray-900">
                             <Link to={`/product/${product._id}`}>{product.name}</Link>
                         </h3>
-                        <p className="mt-1 text-sm text-gray-700 truncate ">
-                            {product.description}</p>
+                        <p className="mt-1 text-sm text-gray-700 truncate ">{product.description}</p>
                         <p className="mt-1 text-sm text-gray-700">Weight: {product.weight} kg</p>
                     </div>
                 </div>
             </Link>
-            <div className='mx-2'>
+            <div className="mx-2">
                 <button onClick={handleOnClick} className="w-full bg-purple-950 text-white py-1 rounded-md mb-2 mt-3 hover:opacity-80">
                     Add to cart
                 </button>

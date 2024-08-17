@@ -13,7 +13,11 @@ export const cartSlice = createSlice({
             if (existingItem) {
                 existingItem.quantity!++;
             } else {
-                state.push({ ...product, quantity: 1 });
+                state.push({
+                    ...product,
+                    quantity: 1,
+                    price: undefined
+                });
             }
             localStorage.setItem('cart', JSON.stringify(state));
         },
