@@ -69,7 +69,7 @@ function MyOrder() {
 
                         <p className="">
                             <Link
-                                to="orderdetail"
+                                to="/orderdetail"
                                 className="hover:bg-gray-100 hover:text-purple-600 text-gray-600 border border-gray-300 hover:opacity-80 font-medium rounded-md text-sm px-5 py-1 text-center"
                             >
                                 View Detail

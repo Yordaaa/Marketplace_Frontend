@@ -10,6 +10,7 @@ import Approve from './Pages/Dashboard/Approve';
 import Cancel from './Pages/Dashboard/Cancel';
 import Otp from './Pages/Otp';
 import MyOrder from './Pages/MyOrder';
+import OrderDetail from './Pages/OrderDetail';
 
 function AppRoutes() {
     return (
@@ -25,6 +26,7 @@ function AppRoutes() {
             <Route path="requests/cancel" element={<Cancel />} />
             <Route path="otp" element={<Otp />} />
             <Route path="myorder" element={<MyOrder />} />
+            <Route path="myorder/orderdetail" element={<OrderDetail />} />
         </Routes>
     );
 }

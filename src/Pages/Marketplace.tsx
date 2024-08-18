@@ -3,14 +3,40 @@ import { useGetAllCategoriesQuery, useGetAllProductsQuery } from '../Redux/Featu
 import { ProductCard } from './ProductCard';
 import { productResTyp } from '../Redux/Features/types';
 import { useState } from 'react';
+import marketplace from '../../public/marketplace.png';
+import Shimmer from '../Components/Shimmer';
 
 const Marketplace: React.FC = () => {
     const { data: categories, error, isLoading } = useGetAllCategoriesQuery();
     const { data: products, error: err, isLoading: loading } = useGetAllProductsQuery();
     const [visibleProducts, setVisibleProducts] = useState<number>(8);
 
-    if (isLoading) {
-        return <div>Loading...</div>;
+    if (isLoading || loading) {
+        // Display shimmer skeleton when loading
+        return (
+            <div className="min-h-[80vh]">
+                <div
+                    className="py-16 "
+                    style={{
+                        backgroundImage: `url(${marketplace})`,
+                        backgroundSize: 'cover',
+                        backgroundColor: 'rgba(0, 0, 0, 0.5)',
+                        backgroundBlendMode: 'darken'
+                    }}
+                >
+                    <h1 className="text-gray-50 text-4xl md:text-5xl lg:text-7xl text-center use pt-5">WELCOME TO MAVEKO</h1>
+                    <h1 className="text-gray-50 text-xl md:text-2xl lg:text-4xl text-center use pb-5">WHAT ARE YOU LOOKING FOR?</h1>
+                </div>
+                <div className="mx-auto max-w-2xl px-4 sm:px-6 lg:max-w-7xl lg:px-8 pt-5">
+                    <div className="grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
+                        {/* Show shimmer effect for each product placeholder */}
+                        {Array.from({ length: visibleProducts }).map((_, index) => (
+                            <Shimmer key={index} />
+                        ))}
+                    </div>
+                </div>
+            </div>
+        );
     }
 
     if (error) {
@@ -18,14 +44,11 @@ const Marketplace: React.FC = () => {
         return <div>Error: {errorMessage}</div>;
     }
 
-    if (loading) {
-        return <div>Loading...</div>;
-    }
-
     if (err) {
         const errorMessage = 'status' in err ? err.status : err.message || 'Unknown error';
         return <div>Error: {errorMessage}</div>;
     }
+
     const handleShowMore = () => {
         setVisibleProducts((prev) => prev + 4);
     };
@@ -35,7 +58,7 @@ const Marketplace: React.FC = () => {
             <div
                 className="py-16"
                 style={{
-                    backgroundImage: 'url("https://www.constructionline.co.uk/wp-content/uploads/2022/06/093-CL-MARKETPLACE-HEADER-V3.1-1.png")',
+                    backgroundImage: `url(${marketplace})`,
                     backgroundSize: 'cover',
                     backgroundColor: 'rgba(0, 0, 0, 0.5)',
                     backgroundBlendMode: 'darken'
