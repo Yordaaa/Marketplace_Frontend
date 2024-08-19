@@ -22,7 +22,7 @@ export default function Cart() {
         dispatch(incrementQuantity({ _id: id }));
     };
 
-    return (
+    return cart.length > 0 ? (
         <div className="max-w-screen-md pt-20 mx-auto p-4">
             <h1 className="text-2xl font-bold mb-4 use">Shopping Cart</h1>
             <div className="">
@@ -112,6 +112,10 @@ export default function Cart() {
                     </p>
                 </div>
             </div>
+        </div>
+    ) : (
+        <div className="min-h-screen flex items-center justify-center text-center">
+            <h2 className="text-2xl font-bold mb-4">Cart is empty</h2>
         </div>
     );
 }

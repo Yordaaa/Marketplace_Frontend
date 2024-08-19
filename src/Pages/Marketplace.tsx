@@ -1,12 +1,17 @@
-import { Link } from 'react-router-dom';
+import { Link, useSearchParams } from 'react-router-dom';
 import { useGetAllCategoriesQuery, useGetAllProductsQuery } from '../Redux/Features/productAPiSlice';
 import { ProductCard } from './ProductCard';
 import { productResTyp } from '../Redux/Features/types';
 import { useState } from 'react';
+import { paramsProps } from './types';
 
 const Marketplace: React.FC = () => {
+    const [searchParams] = useSearchParams();
+    const keyword = searchParams.get('keyword') || '';
+    const params: paramsProps = { keyword };
+
     const { data: categories, error, isLoading } = useGetAllCategoriesQuery();
-    const { data: products, error: err, isLoading: loading } = useGetAllProductsQuery();
+    const { data: products, error: err, isLoading: loading } = useGetAllProductsQuery(params);
     const [visibleProducts, setVisibleProducts] = useState<number>(8);
 
     if (isLoading) {

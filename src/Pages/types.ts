@@ -93,3 +93,7 @@ export interface QuotationByIdProps {
     success: boolean;
     quotation: quotation;
 }
+
+export interface paramsProps {
+    keyword: string;
+}

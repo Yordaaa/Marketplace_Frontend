@@ -1,3 +1,4 @@
+import { paramsProps } from '../../Pages/types';
 import { apiSlice } from './apiSlice';
 import { categoryResTyp, productIdProps, productResTyp } from './types';
 
@@ -6,8 +7,15 @@ export const productApiSlice = apiSlice.injectEndpoints({
         getAllCategories: builder.query<categoryResTyp[], void>({
             query: () => '/category/get-all-categories'
         }),
-        getAllProducts: builder.query<productResTyp[], void>({
-            query: () => '/products/get-all-products'
+        getAllProducts: builder.query<productResTyp[], paramsProps>({
+            query: (params) => {
+                return {
+                    url: '/products/get-all-products',
+                    params: {
+                        keyword: params.keyword
+                    }
+                };
+            }
         }),
         getProduct: builder.query<productResTyp, productIdProps>({
             query: ({ id }) => {

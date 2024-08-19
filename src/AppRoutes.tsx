@@ -10,11 +10,13 @@ import Approve from './Pages/Dashboard/Approve';
 import Cancel from './Pages/Dashboard/Cancel';
 import Otp from './Pages/Otp';
 import MyOrder from './Pages/MyOrder';
+import Filter from './Pages/Filter';
 
 function AppRoutes() {
     return (
         <Routes>
             <Route path="/" element={<Marketplace />} />
+            <Route path="search" element={<Filter />} />
             <Route path="cart" element={<Cart />} />
             <Route path="product/:id" element={<Detail />} />
             <Route path="submit" element={<Submit />} />
