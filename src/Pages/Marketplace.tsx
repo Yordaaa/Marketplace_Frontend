@@ -26,7 +26,7 @@ const Marketplace: React.FC = () => {
 
     const { data: categories, error, isLoading } = useGetAllCategoriesQuery(resPerPage);
     const { data: products, error: err, isLoading: loading } = useGetAllProductsQuery(params);
-    console.log(categories);
+
     if (isLoading || loading) {
         // Display shimmer skeleton when loading
         return (
