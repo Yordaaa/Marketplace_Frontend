@@ -28,7 +28,7 @@ function AppRoutes() {
             <Route path="requests/cancel" element={<Cancel />} />
             <Route path="otp" element={<Otp />} />
             <Route path="myorder" element={<MyOrder />} />
-            <Route path="myorder/orderdetail" element={<OrderDetail />} />
+            <Route path="myorder/:id" element={<OrderDetail />} />
         </Routes>
     );
 }

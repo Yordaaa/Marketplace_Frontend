@@ -5,7 +5,7 @@ function MyOrder() {
     const email = 'yerohunduma4@gmail.com';
 
     const { data: orderData, isLoading, isError } = useGetMyOrderQuery(email);
-
+    console.log(orderData);
     if (isLoading) return <p>Loading...</p>;
     if (isError) return <p>Error fetching data...</p>;
 
@@ -45,14 +45,12 @@ function MyOrder() {
                                 </p>
                             </div>
                             <p className="">
-                                <Link to="orderdetail" className="text-red-800 border border-red-600 hover:opacity-80 font-medium rounded-md text-sm px-5 py-1 text-center">
-                                    Cancel Order
-                                </Link>
+                                <button className="text-red-800 border border-red-600 hover:opacity-80 font-medium rounded-md text-sm px-5 py-1 text-center">Cancel Order</button>
                             </p>
 
                             <p className="">
                                 <Link
-                                    to="orderdetail"
+                                    to={`/myorder/${order._id}`}
                                     className="hover:bg-gray-100 hover:text-purple-600 text-gray-600 border border-gray-300 hover:opacity-80 font-medium rounded-md text-sm px-5 py-1 text-center"
                                 >
                                     View Detail

@@ -1,4 +1,5 @@
 import { orderResType } from '../../Pages/order.types';
+import { productDetail } from '../../Pages/types';
 import { apiSlice } from './apiSlice';
 
 export const orderApiSlice = apiSlice.injectEndpoints({
@@ -10,8 +11,15 @@ export const orderApiSlice = apiSlice.injectEndpoints({
                     url: `/quatation/get-my-qoute?email=${email}`
                 };
             }
+        }),
+        getProductDetail: builder.query<productDetail, string>({
+            query: (id) => {
+                return {
+                    url: `/quatation/get-qoute-detail/${id}`
+                };
+            }
         })
     })
 });
 
-export const { useGetMyOrderQuery } = orderApiSlice;
+export const { useGetMyOrderQuery, useGetProductDetailQuery } = orderApiSlice;
