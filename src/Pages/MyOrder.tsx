@@ -14,22 +14,24 @@ function MyOrder() {
             <h1 className="use text-2xl pb-5">My Orders.</h1>
             <div className="border rounded min-w-fit">
                 {orderData?.myQuotes.map((order) => (
-                    <div className="grid gap-5 grid-cols-1 md:grid-cols-2 justify-between items-center pb-5">
-                        <div className="flex justify-between items-center w-full pr-5">
-                            <div>
-                                <h1 className="font-semibold text-gray-600">Order ID :</h1>
-                                <p className="use">{order._id}</p>
-                            </div>
-                            <div>
-                                <h1 className="font-semibold text-gray-600">Name :</h1>
-                                <p className="use">{order.customer_name}</p>
+                    <div className="flex flex-col lg:flex-row  items-center pb-5 px-3">
+                        <div className="flex flex-col md:flex-row justify-evenly w-full ">
+                            <div className="flex gap-5">
+                                <div>
+                                    <h1 className="font-semibold text-gray-600">Order ID :</h1>
+                                    <p className="use">{order._id}</p>
+                                </div>
+                                <div>
+                                    <h1 className="font-semibold text-gray-600">Name :</h1>
+                                    <p className="use">{order.customer_name}</p>
+                                </div>
                             </div>
                             <div>
                                 <h1 className="font-semibold text-gray-600">Email :</h1>
                                 <p className="use">{order.customer_email}</p>
                             </div>
                         </div>
-                        <div className="flex justify-between items-center w-full">
+                        <div className="flex justify-evenly items-center w-full">
                             <div>
                                 <h1 className="font-semibold text-gray-600">Status :</h1>
                                 <p
