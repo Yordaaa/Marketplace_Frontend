@@ -12,6 +12,7 @@ import Otp from './Pages/Otp';
 import MyOrder from './Pages/MyOrder';
 import Filter from './Pages/Filter';
 import OrderDetail from './Pages/OrderDetail';
+import SendOTP from './Pages/SendOTP';
 
 function AppRoutes() {
     return (
@@ -26,9 +27,10 @@ function AppRoutes() {
             <Route path="categories" element={<Categories />} />
             <Route path="requests/approve" element={<Approve />} />
             <Route path="requests/cancel" element={<Cancel />} />
-            <Route path="otp" element={<Otp />} />
+            <Route path="otp/:quoteId" element={<Otp />} />
             <Route path="myorder" element={<MyOrder />} />
             <Route path="myorder/:id" element={<OrderDetail />} />
+            <Route path=":quoteId" element={<SendOTP />} />
         </Routes>
     );
 }

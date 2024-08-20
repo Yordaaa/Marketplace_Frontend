@@ -30,8 +30,26 @@ export const quatationApiSlice = apiSlice.injectEndpoints({
                     body: data
                 };
             }
+        }),
+        sendOtp: builder.mutation({
+            query: (quoteId) => {
+                return {
+                    url: `/quatation/get-otp/${quoteId}`,
+                    method: 'POST'
+                };
+            }
+        }),
+        verifyOtp: builder.mutation({
+            query: (data) => {
+                console.log(data);
+                return {
+                    url: '/quatation/verfiy-otp',
+                    method: 'POST',
+                    body: data
+                };
+            }
         })
     })
 });
 
-export const { useRequestQuatationMutation, useGetQuotesQuery, useGetQuotesByIdQuery, useRespondeCustmerQuoteMutation } = quatationApiSlice;
+export const { useRequestQuatationMutation, useGetQuotesQuery, useGetQuotesByIdQuery, useRespondeCustmerQuoteMutation, useSendOtpMutation, useVerifyOtpMutation } = quatationApiSlice;
