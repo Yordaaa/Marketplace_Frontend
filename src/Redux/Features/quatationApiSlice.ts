@@ -24,7 +24,6 @@ export const quatationApiSlice = apiSlice.injectEndpoints({
         }),
         respondeCustmerQuote: builder.mutation({
             query: (data) => {
-                console.log(data);
                 return {
                     url: '/quatation/respond-customer-quote',
                     method: 'POST',

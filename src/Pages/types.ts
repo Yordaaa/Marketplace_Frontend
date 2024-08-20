@@ -48,7 +48,7 @@ export interface quatationResType {
 }
 
 export interface productDetail {
-    price: string | number | readonly string[] | undefined;
+    price: string | number;
     ancestry: string;
     code: string;
     createdAt: Date;
@@ -75,6 +75,7 @@ export interface productDetail {
 export interface prod {
     _id: string;
     code: string;
+    price: number;
     quantity_requested: number;
     productDetails: productDetail;
 }
@@ -96,4 +97,23 @@ export interface QuotationByIdProps {
 
 export interface paramsProps {
     keyword: string;
+    page: number;
+}
+
+export interface orderedDetailType {
+    _id: string;
+    customer_name: string;
+    customer_email: string;
+    status: 'Pending' | 'Cancled' | 'Approved';
+    otp?: number;
+    otp_expires_at: string;
+    createdAt: string;
+    updatedAt: string;
+    grandTotal: number;
+    products: prod[];
+}
+
+export interface productDetail {
+    success: boolean;
+    quote: orderedDetailType;
 }

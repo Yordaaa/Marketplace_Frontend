@@ -1,4 +1,4 @@
-import { Link, useSearchParams } from 'react-router-dom';
+import { Link, useNavigate, useSearchParams } from 'react-router-dom';
 import { useGetAllCategoriesQuery, useGetAllProductsQuery } from '../Redux/Features/productAPiSlice';
 import { ProductCard } from './ProductCard';
 import { productResTyp } from '../Redux/Features/types';
@@ -6,16 +6,27 @@ import { useState } from 'react';
 import { paramsProps } from './types';
 import marketplace from '../../public/marketplace.png';
 import Shimmer from '../Components/Shimmer';
+import { Pagination } from 'flowbite-react';
 
 const Marketplace: React.FC = () => {
+    const [currentPage, setCurrentPage] = useState(1);
     const [searchParams] = useSearchParams();
+    const navigate = useNavigate();
+
+    const onPageChange = (page: number) => {
+        setCurrentPage(page);
+        searchParams.set('page', page.toString());
+        navigate('?' + searchParams);
+    };
+
+    const page = Number(searchParams.get('page')) || 1;
     const keyword = searchParams.get('keyword') || '';
-    const params: paramsProps = { keyword };
+    const params: paramsProps = { keyword, page };
+    const resPerPage: string = 'some';
 
-    const { data: categories, error, isLoading } = useGetAllCategoriesQuery();
+    const { data: categories, error, isLoading } = useGetAllCategoriesQuery(resPerPage);
     const { data: products, error: err, isLoading: loading } = useGetAllProductsQuery(params);
-    const [visibleProducts, setVisibleProducts] = useState<number>(8);
-
+    console.log(categories);
     if (isLoading || loading) {
         // Display shimmer skeleton when loading
         return (
@@ -34,8 +45,7 @@ const Marketplace: React.FC = () => {
                 </div>
                 <div className="mx-auto max-w-2xl px-4 sm:px-6 lg:max-w-7xl lg:px-8 pt-5">
                     <div className="grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
-                        {/* Show shimmer effect for each product placeholder */}
-                        {Array.from({ length: visibleProducts }).map((_, index) => (
+                        {Array.from({ length: 8 }).map((_, index) => (
                             <Shimmer key={index} />
                         ))}
                     </div>
@@ -53,10 +63,6 @@ const Marketplace: React.FC = () => {
         const errorMessage = 'status' in err ? err.status : err.message || 'Unknown error';
         return <div>Error: {errorMessage}</div>;
     }
-
-    const handleShowMore = () => {
-        setVisibleProducts((prev) => prev + 4);
-    };
 
     return (
         <div className="pt-8">
@@ -102,16 +108,15 @@ const Marketplace: React.FC = () => {
             <div>
                 <div className="mx-auto max-w-2xl px-4 sm:px-6 lg:max-w-7xl lg:px-8 pt-5">
                     <div className="mt-6 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
-                        {products?.slice(0, visibleProducts).map((product: productResTyp) => (
-                            <ProductCard key={product._id} product={product} />
+                        {products?.products.map((product: productResTyp) => (
+                            <ProductCard key={product._id} products={product} />
                         ))}
                     </div>
                 </div>
-                {visibleProducts < (products?.length || 0) && (
-                    <div className="flex justify-center my-4">
-                        <button onClick={handleShowMore} className="px-4 py-1 bg-gray-800 text-white rounded-md">
-                            Show More
-                        </button>
+
+                {products?.filteredProductCount! > products?.resPerPage! && (
+                    <div className="flex overflow-x-auto sm:justify-center">
+                        <Pagination currentPage={currentPage} totalPages={Math.ceil(products?.filteredProductCount! / products?.resPerPage!)} onPageChange={onPageChange} />
                     </div>
                 )}
             </div>

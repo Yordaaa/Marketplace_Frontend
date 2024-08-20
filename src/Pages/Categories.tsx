@@ -2,7 +2,8 @@ import { Link } from 'react-router-dom';
 import { useGetAllCategoriesQuery } from '../Redux/Features/productAPiSlice';
 
 function Categories() {
-    const { data: categories, error, isLoading } = useGetAllCategoriesQuery();
+    const resPerPage: string = 'all';
+    const { data: categories, error, isLoading } = useGetAllCategoriesQuery(resPerPage);
 
     if (isLoading) {
         return <div>Loading...</div>;
@@ -21,8 +22,8 @@ function Categories() {
                     <Link to="" className="items-center border rounded py-2">
                         <h3 className="text-lg use text-center">{category.category}</h3>
                         <div className="flex gap-2 items-center">
-                            <img src="https://www.spareparts.live/wp-content/uploads/lagers-1024x469.jpg" className="w-40 py-3" />
-                            <p className="text-sm">some description about this category some description about this category</p>
+                            <img src={category.categoryImg} className="w-40 py-3" />
+                            <p className="text-sm">{category.description}</p>
                         </div>
                     </Link>
                 ))}

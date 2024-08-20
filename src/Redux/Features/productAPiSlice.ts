@@ -1,18 +1,24 @@
 import { paramsProps } from '../../Pages/types';
 import { apiSlice } from './apiSlice';
-import { categoryResTyp, productIdProps, productResTyp } from './types';
+import { categoryResTyp, ProductCardProps, productIdProps, productResTyp } from './types';
 
 export const productApiSlice = apiSlice.injectEndpoints({
     endpoints: (builder) => ({
-        getAllCategories: builder.query<categoryResTyp[], void>({
-            query: () => '/category/get-all-categories'
+        getAllCategories: builder.query<categoryResTyp[], string>({
+            query: (resPerPage) => {
+                return {
+                    url: '/category/get-all-categories',
+                    params: { perPage: resPerPage }
+                };
+            }
         }),
-        getAllProducts: builder.query<productResTyp[], paramsProps>({
+        getAllProducts: builder.query<ProductCardProps, paramsProps>({
             query: (params) => {
                 return {
                     url: '/products/get-all-products',
                     params: {
-                        keyword: params.keyword
+                        keyword: params.keyword,
+                        page: params.page
                     }
                 };
             }

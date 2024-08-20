@@ -1,6 +1,10 @@
 export interface categoryResTyp {
     _id: string;
     category: string;
+    categoryImg: string;
+    description: string;
+    createdAt: Date;
+    updatedAt: Date;
 }
 
 export interface productResTyp {
@@ -29,7 +33,9 @@ export interface productResTyp {
 }
 
 export interface ProductCardProps {
-    product: productResTyp;
+    products: productResTyp[];
+    filteredProductCount: number;
+    resPerPage: number;
 }
 
 export interface productIdProps {
