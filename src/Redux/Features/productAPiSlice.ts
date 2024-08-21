@@ -12,6 +12,18 @@ export const productApiSlice = apiSlice.injectEndpoints({
                 };
             }
         }),
+        getProductsByCategory: builder.query({
+            query: (params) => {
+                console.log(params);
+                return {
+                    url: '/category/getCategory-product',
+                    params: {
+                        category: params.category
+                    }
+                };
+            }
+        }),
+
         getAllProducts: builder.query<ProductCardProps, paramsProps>({
             query: (params) => {
                 return {
@@ -33,4 +45,4 @@ export const productApiSlice = apiSlice.injectEndpoints({
     })
 });
 
-export const { useGetAllCategoriesQuery, useGetAllProductsQuery, useGetProductQuery } = productApiSlice;
+export const { useGetAllCategoriesQuery, useGetAllProductsQuery, useGetProductQuery, useGetProductsByCategoryQuery } = productApiSlice;
