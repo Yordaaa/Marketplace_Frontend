@@ -31,9 +31,9 @@ function Filter() {
                     <ProductCard key={product._id} products={product} />
                 ))}
             </div>
-            {products?.filteredProductCount! > products?.resPerPage! && (
-                <div className="flex overflow-x-auto sm:justify-center">
-                    <Pagination currentPage={currentPage} totalPages={Math.ceil(products?.filteredProductCount! / products?.resPerPage!)} onPageChange={onPageChange} />
+            {(products?.filteredProductCount ?? 0) > (products?.resPerPage ?? 0) && (
+                <div className="flex overflow-x-auto w-full justify-center">
+                    <Pagination currentPage={currentPage} totalPages={Math.ceil((products?.filteredProductCount ?? 0) / (products?.resPerPage ?? 1))} onPageChange={onPageChange} />
                 </div>
             )}
         </div>

@@ -22,3 +22,8 @@ export interface orderResType {
     success: boolean;
     myQuotes: quote[];
 }
+export interface OtpRes {
+    success: boolean;
+    message: string;
+    userInfo: any; 
+}
