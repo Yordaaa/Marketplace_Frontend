@@ -1,11 +1,13 @@
 import { Link } from 'react-router-dom';
 import { useGetMyOrderQuery } from '../Redux/Features/orderApiSlice';
+import { useSelector } from 'react-redux';
+import { userSelector } from '../Redux/Features/seletor';
 
 function MyOrder() {
-    const email = 'yerohunduma4@gmail.com';
+    const { userInfo } = useSelector(userSelector);
 
-    const { data: orderData, isLoading, isError } = useGetMyOrderQuery(email);
-    console.log(orderData);
+    const { data: orderData, isLoading, isError } = useGetMyOrderQuery(userInfo.customer_email);
+
     if (isLoading) return <p>Loading...</p>;
     if (isError) return <p>Error fetching data...</p>;
 

@@ -3,10 +3,14 @@ import OtpInput from 'react-otp-input';
 import { useNavigate, useParams } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { useVerifyOtpMutation } from '../Redux/Features/quatationApiSlice';
+import { useDispatch } from 'react-redux';
+import { setUserInfo } from '../Redux/Features/userSlice';
+import { OtpRes } from './order.types';
 
 const Otp: React.FC = () => {
     const params = useParams();
     const navigate = useNavigate();
+    const dispatch = useDispatch();
     const [otp, setOtp] = useState<string>('');
 
     const quoteId = params.quoteId;
@@ -17,11 +21,12 @@ const Otp: React.FC = () => {
         e.preventDefault();
 
         try {
-            const res = await verifyOtp({ quoteId, otp }); // Send OTP and quoteId to the server
+            const res = await verifyOtp({ quoteId, otp });
 
             if ('data' in res) {
-                const { data } = res as { data: { success: boolean; message: string } };
+                const { data } = res as { data: OtpRes };
                 if (data.success) {
+                    dispatch(setUserInfo(data.userInfo));
                     toast.success(data.message);
                     navigate('/myorder');
                 } else {

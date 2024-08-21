@@ -14,6 +14,7 @@ import Filter from './Pages/Filter';
 import OrderDetail from './Pages/OrderDetail';
 import SendOTP from './Pages/SendOTP';
 import CategoryProduct from './Pages/CategoryProduct';
+import PrivateRoute from './Components/PrivateRoute';
 
 function AppRoutes() {
     return (
@@ -29,8 +30,10 @@ function AppRoutes() {
             <Route path="requests/approve" element={<Approve />} />
             <Route path="requests/cancel" element={<Cancel />} />
             <Route path="otp/:quoteId" element={<Otp />} />
-            <Route path="myorder" element={<MyOrder />} />
-            <Route path="myorder/:id" element={<OrderDetail />} />
+            <Route element={<PrivateRoute />}>
+                <Route path="myorder" element={<MyOrder />} />
+                <Route path="myorder/:id" element={<OrderDetail />} />
+            </Route>
             <Route path=":quoteId" element={<SendOTP />} />
             <Route path="category/:category" element={<CategoryProduct />} />
         </Routes>
