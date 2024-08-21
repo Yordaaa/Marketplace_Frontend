@@ -13,6 +13,7 @@ import MyOrder from './Pages/MyOrder';
 import Filter from './Pages/Filter';
 import OrderDetail from './Pages/OrderDetail';
 import SendOTP from './Pages/SendOTP';
+import CategoryProduct from './Pages/CategoryProduct';
 
 function AppRoutes() {
     return (
@@ -31,6 +32,7 @@ function AppRoutes() {
             <Route path="myorder" element={<MyOrder />} />
             <Route path="myorder/:id" element={<OrderDetail />} />
             <Route path=":quoteId" element={<SendOTP />} />
+            <Route path="category/:category" element={<CategoryProduct />} />
         </Routes>
     );
 }

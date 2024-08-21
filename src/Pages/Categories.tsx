@@ -8,7 +8,7 @@ function Categories() {
     if (isLoading) {
         return <div>Loading...</div>;
     }
-    console.log(categories);
+
     if (error) {
         const errorMessage = 'status' in error ? error.status : error.message || 'Unknown error';
         return <div>Error: {errorMessage}</div>;
@@ -20,7 +20,7 @@ function Categories() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-screen-lg mx-auto px-5">
             {categories?.map((category) => (
                 <Link
-                    to=""
+                    to={`/category/${category.category}`}
                     className="flex flex-col items-center border rounded-lg shadow-lg transition-transform transform hover:scale-105 hover:shadow-xl bg-white p-5"
                     key={category._id}
                 >

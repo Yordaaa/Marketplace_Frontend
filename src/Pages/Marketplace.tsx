@@ -81,8 +81,8 @@ const Marketplace: React.FC = () => {
             <div className="max-w-screen-2xl mx-auto px-3 lg:px-10 py-5 bg-white shadow-md">
                 <div className="flex items-center">
                     <div className="hidden md:grid grid-cols-3 lg:grid-cols-5 gap-8 text-gray-800 px-5">
-                        {categories?.slice(0, 5).map((category) => (
-                            <Link to="" className="flex gap-2 items-center" key={category._id}>
+                        {categories?.map((category) => (
+                            <Link to={`category/${category.category}`} className="flex gap-2 items-center" key={category._id}>
                                 <i className="fas fa-building text-3xl md:text-4xl"></i>
                                 <h3 className="text-md md:text-lg">{category.category}</h3>
                             </Link>

@@ -59,7 +59,7 @@ const Otp: React.FC = () => {
                         )}
                     />
                 </div>
-                <button type="submit" className="p-2 bg-green-500 text-white rounded mt-5">
+                <button disabled={isLoading} type="submit" className="p-2 bg-green-500 text-white rounded mt-5">
                     {isLoading ? 'Verfing...' : 'Verify OTP'}
                 </button>
             </form>
