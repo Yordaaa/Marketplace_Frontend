@@ -15,7 +15,6 @@ const Otp: React.FC = () => {
 
     const onSubmitHandler = async (e: React.FormEvent) => {
         e.preventDefault();
-
         try {
             const res = await verifyOtp({ quoteId, otp }); // Send OTP and quoteId to the server
 

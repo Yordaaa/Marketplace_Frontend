@@ -4,7 +4,7 @@ import { ProductCard } from './ProductCard';
 import { productResTyp } from '../Redux/Features/types';
 import { useState } from 'react';
 import { paramsProps } from './types';
-import marketplace from '../../public/marketplace.png';
+import marketplace from '/marketplace.png';
 import Shimmer from '../Components/Shimmer';
 import { Pagination } from 'flowbite-react';
 
@@ -113,13 +113,12 @@ const Marketplace: React.FC = () => {
                         ))}
                     </div>
                 </div>
-
-                {products?.filteredProductCount! > products?.resPerPage! && (
-                    <div className="flex overflow-x-auto sm:justify-center">
-                        <Pagination currentPage={currentPage} totalPages={Math.ceil(products?.filteredProductCount! / products?.resPerPage!)} onPageChange={onPageChange} />
-                    </div>
-                )}
             </div>
+            {products?.filteredProductCount > products?.resPerPage && (
+                <div className="flex overflow-x-auto  justify-center pt-5">
+                    <Pagination currentPage={currentPage} totalPages={Math.ceil(products?.filteredProductCount! / products?.resPerPage!)} onPageChange={onPageChange} />
+                </div>
+            )}
         </div>
     );
 };

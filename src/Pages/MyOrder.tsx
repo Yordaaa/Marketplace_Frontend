@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 import { useGetMyOrderQuery } from '../Redux/Features/orderApiSlice';
 
 function MyOrder() {
-    const email = 'yerohunduma4@gmail.com';
+    const email = 'yordanostibebu5@gmail.com';
 
     const { data: orderData, isLoading, isError } = useGetMyOrderQuery(email);
     console.log(orderData);
