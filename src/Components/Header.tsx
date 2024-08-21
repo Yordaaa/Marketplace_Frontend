@@ -8,7 +8,6 @@ import Search from './Search';
 const navigation = [
     { name: 'Marketplace', to: '/' },
     { name: 'My Order', to: '/myorder' }
-    // { name: 'Contact Us', to: '/contactus' }
 ];
 
 function Header() {
@@ -55,23 +54,19 @@ function Header() {
             </div>
             <hr className="text-gray-700 pb-2 px-20 mt-[60px]" />
             <div className="mt-10 px-5 fixed top-0 left-0 right-0 z-50 bg-white shadow-md ">
-                {/* <img
-                    src="https://t3.ftcdn.net/jpg/04/37/54/90/360_F_437549071_7uQvtqTIgd50l2r0OZ1g0zJnLwnzJmIG.jpg"
-                    alt=""
-                    className="absolute inset-0 -z-10 h-full w-full object-cover object-right md:object-center"
-                /> */}
                 <nav className="flex items-center justify-between p-2 lg:px-8 max-w-screen-2xl mx-auto">
-                    <div className="flex lg:flex-1">
+                    <div className="flex lg:flex-1 w-auto">
                         <Link to="/" className="text-2xl font-bold -m-1.5 p-1.5">
                             Maveko
                         </Link>
                     </div>
 
                     <i className="fas fa-cart-shopping"></i>
+
+                    <div className="w-1/2 lg:hidden">
+                        <Search />
+                    </div>
                     <div className="flex lg:hidden">
-                        <div className="w-full ">
-                            <Search />
-                        </div>
                         <div className="flex  justify-end gap-2 pr-3">
                             <div className="flex gap-3">
                                 <Link to="/cart" className="flex justify-center items-center">
@@ -80,14 +75,19 @@ function Header() {
                                 </Link>
                             </div>
                         </div>
+                        <div className="flex items-center px-3">
+                            {' '}
+                            <i className="fas fa-user text-2xl"></i>
+                        </div>
                         <button type="button" onClick={() => setMobileMenuOpen(true)} className="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-700">
                             <i className="fas fa-bars text-xl"></i>
                         </button>
                     </div>
 
-                    <div className="hidden lg:flex w-full max-w-screen-md">
+                    <div className="hidden lg:flex w-[40%] max-w-screen-md">
                         <Search />
                     </div>
+
                     <div className="hidden lg:flex lg:flex-1 lg:justify-end gap-2">
                         <div className="flex">
                             <div className="hidden lg:flex">
@@ -97,11 +97,16 @@ function Header() {
                                     </Link>
                                 ))}
                             </div>
+
                             <Link to="/cart" className="flex justify-center items-center">
                                 <i className="fas fa-shopping-cart text-2xl  relative"></i>
                                 <p className="text-white bg-red-600 absolute text-[12px]  rounded-full w-4 h-4 text-center ml-5 mb-5">{cart.length}</p>
                             </Link>
                             <p className="pt-2 text-lg">cart</p>
+                            <div className="flex items-center pl-4 px-3">
+                                {' '}
+                                <i className="fas fa-user text-2xl"></i>
+                            </div>
                         </div>
                     </div>
                 </nav>
@@ -114,6 +119,11 @@ function Header() {
                             </Link>
                             <div className="flex flex-1 justify-end gap-2 pr-3">
                                 <div>
+                                    <div className="flex items-center px-3">
+                                        {' '}
+                                        <i className="fas fa-user text-xl"></i>
+                                    </div>
+
                                     <Link to="/cart" className="flex justify-center items-center">
                                         <i className="fas fa-shopping-cart text-2xl  relative"></i>
                                         <p className="text-white bg-red-600 absolute text-[12px]  rounded-full w-4 h-4 text-center ml-5 mb-5">{cart.length}</p>

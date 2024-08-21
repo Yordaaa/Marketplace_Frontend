@@ -35,11 +35,11 @@ function SendOTP() {
     };
 
     return (
-        <div className="h-screen flex justify-center items-center">
-            <div className="flex flex-col gap-5 border rounded p-10 bg-zinc-300">
-                <h2>Sending an OTP to Your Email Account</h2>
+        <div className="h-[80vh] flex justify-center items-center px-3 ">
+            <div className="flex flex-col gap-5 border rounded p-10 bg-zinc-100">
+                <h2 className='use text-xl'>Sending an OTP to Your Email Address.</h2>
                 <form onSubmit={onSubmitHandler}>
-                    <button disabled={isLoading} className="p-2 bg-green-500 rounded">
+                    <button disabled={isLoading} className="p-2 bg-purple-950 rounded text-white hover:bg-opacity-90">
                         {isLoading ? 'Sending...' : 'Send OTP'}
                     </button>
                 </form>

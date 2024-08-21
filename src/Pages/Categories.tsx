@@ -15,20 +15,26 @@ function Categories() {
     }
 
     return (
-        <div>
-            <h1 className=" pt-24 text-center text-3xl pb-5 font-semibold  text-gray-900 md:text-2xl use">All Categories</h1>
-            <div className=" grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3  gap-5 max-w-screen-lg mx-auto text-gray-900 px-5">
-                {categories?.map((category) => (
-                    <Link to={`/category/${category.category}`} className="items-center border rounded py-2">
-                        <h3 className="text-lg use text-center">{category.category}</h3>
-                        <div className="flex gap-2 items-center">
-                            <img src={category.categoryImg} className="w-40 py-3" />
-                            <p className="text-sm">{category.description}</p>
-                        </div>
-                    </Link>
-                ))}
-            </div>
+        <div className="pt-24 pb-10">
+        <h1 className="text-center text-4xl font-semibold text-gray-900 mb-8">All Categories</h1>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-screen-lg mx-auto px-5">
+            {categories?.map((category) => (
+                <Link
+                    to={`/category/${category.category}`}
+                    className="flex flex-col items-center border rounded-lg shadow-lg transition-transform transform hover:scale-105 hover:shadow-xl bg-white p-5"
+                    key={category._id}
+                >
+                    <img
+                        src={category.categoryImg}
+                        alt={category.category}
+                        className="w-full h-32 object-cover rounded-md mb-4"
+                    />
+                    <h3 className="text-lg font-semibold text-gray-800 text-center">{category.category}</h3>
+                    <p className="text-sm text-gray-600 text-center">{category.description}</p>
+                </Link>
+            ))}
         </div>
+    </div>
     );
 }
 

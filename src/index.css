@@ -1,9 +1,10 @@
-@import url("https://fonts.googleapis.com/css2?family=Quicksand:wght@500;700&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@500;700&display=swap');
+@import 'flowbite/dist/flowbite.css';
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 .use {
-  font-family: Quicksand, sans-serif;
-  font-weight: 600;
+    font-family: Quicksand, sans-serif;
+    font-weight: 600;
 }
