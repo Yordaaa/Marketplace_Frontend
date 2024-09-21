@@ -28,7 +28,7 @@ export function ProductCard({ products }: { products: productResTyp }) {
                         <h3 className="font-semibold text-gray-900">
                             <Link to={`/product/${products._id}`}>{products.name}</Link>
                         </h3>
-                        <p className="mt-1 text-sm text-gray-700 truncate ">{products.description}</p>
+                        <p className="mt-1 text-sm text-gray-700 truncate-2 ">{products.description}</p>
                         <p className="mt-1 text-sm text-gray-700">Weight: {products.weight} kg</p>
                     </div>
                 </div>
